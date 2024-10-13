@@ -1,3 +1,18 @@
+function escapeHtml(str) {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// Contoh penggunaan:
+const userInput = "<script>alert('XSS!')</script>";
+const safeInput = escapeHtml(userInput);
+console.log(userInput);
+// Output: &lt;script&gt;alert(&#039;XSS!&#039;)&lt;/script&gt;
+
 document.getElementsByClassName("root")[0].innerHTML = `
     <div class="alert" id="alertBox">
         <span class="closebtn">&times;</span>
@@ -69,9 +84,9 @@ window.onload = function() {
         document.getElementById("myForm").onsubmit = function(event) {
             event.preventDefault();
 
-            let username = document.getElementById("username").value;
-            let nim = document.getElementById("nim").value;
-            let kom = document.getElementById("kom").value;
+            let username = escapeHtml(document.getElementById("username").value);
+            let nim = escapeHtml(document.getElementById("nim").value);
+            let kom = escapeHtml(document.getElementById("kom").value);
 
             if (username && nim && kom) {
                 document.getElementById("cardUsername").innerText = "Username: " + username;
