@@ -115,12 +115,12 @@ window.onload = function() {
 
         // Menutup alert
         document.querySelector('.closebtn').onclick = function() {
-            alertBox.style.display = "none";
+            alertBox.classList.remove("show");
         };
 
         // Menutup alert dengan click di luar
         window.onclick = function(event) {
             if (event.target === alertBox) {
-                alertBox.style.display = "none";
+                alertBox.classList.remove("show");
             }
         };
